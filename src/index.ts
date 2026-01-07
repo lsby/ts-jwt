@@ -8,7 +8,7 @@ export class JWT管理器<JWT负载 extends string | object | Buffer> {
 
   签名(负载: JWT负载): string {
     var token = jwt.sign(负载, this.secret, {
-      expiresIn: this.expiresIn,
+      expiresIn: parseInt(this.expiresIn),
     })
     return token
   }
