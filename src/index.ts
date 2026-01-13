@@ -1,14 +1,15 @@
 import jwt from 'jsonwebtoken'
+import type { StringValue } from 'ms'
 
 export class JWT管理器<JWT负载 extends string | object | Buffer> {
   constructor(
     private secret: string,
-    private expiresIn: string,
+    private expiresIn: number | StringValue,
   ) {}
 
   签名(负载: JWT负载): string {
     var token = jwt.sign(负载, this.secret, {
-      expiresIn: parseInt(this.expiresIn),
+      expiresIn: this.expiresIn,
     })
     return token
   }
